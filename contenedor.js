@@ -1,11 +1,12 @@
-var fs = require('fs');
+import fs from 'fs'
+
 class Contenedor {
     constructor(archivo){
         this.archivo = archivo
     }
 
     async getAll() {
-        try{            
+        try{
             const contenido = await fs.promises.readFile(this.archivo,'utf-8');
             if (contenido===""){
                 const datos = [];
@@ -18,7 +19,8 @@ class Contenedor {
         catch (error){
             console.log('Error al leer archivo. No se encontraron los productos. Tipo de error: ' + error);
         }
-    };
+    }
+
     async save (objeto) {
         const objsCollection = await this.getAll();
         let newId;
@@ -38,6 +40,7 @@ class Contenedor {
             console.log("Error al guardar el producto. Tipo de error: "+ error);
         }
     }
+
     async getById (id){
         try{
             const objsCollection = await this.getAll();
@@ -55,6 +58,7 @@ class Contenedor {
             console.log('Error al leer archivo. No se encontró producto. Tipo de error: ' + error);
         }
     }
+
     async deleteById (id){
         try{
             const objsCollection = await this.getAll();
@@ -67,6 +71,7 @@ class Contenedor {
             console.log('Error al leer archivo. No se pudo eliminar el producto. Tipo de error: ' + error);
         }
     }
+
     async deleteAll (){
         try{
             const arrVacio = "";
@@ -81,7 +86,13 @@ class Contenedor {
 
 const productos = new Contenedor ('productos.txt')
 
+
+
+export {productos};
+
 /********Los productos se ingresan de uno a la vez.*******/
 //productos.save({titulo:"tijera",precio:123,url:"https/www.librería.com.ar/asdfasfasfas"})
 //productos.save({titulo:"escuadra",precio:200,url:"https/www.librería.com.ar/134123asfas"})
-productos.save({titulo:"lapicera",precio:354,url:"https/www.librería.com.ar/145dsaafj89a"})
+//productos.save({titulo:"lapicera",precio:354,url:"https/www.librería.com.ar/145dsaafj89a"})
+
+
