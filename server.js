@@ -18,14 +18,14 @@ app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 app.use(express.static(__dirname +'/public'));
 
-/*app.use(function(err,req,res,next){
-    console.error(err.stack);
-    res.status(400).send({error: "Producto no econtrado"})
-})*/ 
-
-
 /******Rutas******/
-app.use('/api/productos', routerProductos) ;
+app.use('/api/productos', routerProductos);
+
+//Errores globales
+app.use(function(err,req,res,next){
+    console.error(err.stack);
+    res.status(err.status || 500).send({error: "Algo se rompió"})
+});
 
 /******Servidor******/
 const port = 8080;

@@ -5,13 +5,24 @@ import {productos} from '../../contenedor.js';
 
 const routerProductos = express.Router();
 
+async function middlewareGetIdNotFound (req,res,next){
+    let id = Number(req.params.id);
+    const prod = await productos.getById(id);
+    if (prod==null){
+        const msj = {msg:'Producto no encontrado'};
+        return res.send(msj);
+    }else{
+        console.log("OK");
+    }
+    next();
+}
 
 routerProductos.get('/', async (req,res)=>{
     const prods = await productos.getAll();
     return res.status(200).json(prods);
 });
 
-routerProductos.get('/:id', async (req,res)=>{
+routerProductos.get('/:id', middlewareGetIdNotFound, async (req,res)=>{
     let id = Number(req.params.id);
     const prod = await productos.getById(id);
     res.status(200).json(prod);
@@ -19,19 +30,21 @@ routerProductos.get('/:id', async (req,res)=>{
 
 routerProductos.post('/', (req,res)=>{
     let obj = req.body;
-    res.status(200).json(productos.save(obj));
+    productos.save(obj)
+    res.status(200).json({msg:'Producto Agregado', data: req.body});
 });
 
-routerProductos.delete('/:id', async (req,res)=>{
+routerProductos.delete('/:id', (req,res)=>{
     let id = Number(req.params.id);
-    const prodDelete= await productos.deleteById(id);
-    res.status(200).json(prodDelete);
+    productos.deleteById(id);
+    res.status(200).json({msg:'Producto Borrado'});
 })
 
-routerProductos.put('/:id', async (req, res)=>{
+routerProductos.put('/:id', (req, res)=>{
     let id = Number(req.params.id);
     let obj = req.body;
-    res.status(200).json(productos.update(id,obj));
+    productos.update(id,obj);
+    res.status(200).json({msg:'Producto Actualizado', new:{...req.body}});
 });
 
 export default routerProductos;

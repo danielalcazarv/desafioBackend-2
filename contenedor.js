@@ -50,7 +50,6 @@ class Contenedor {
                 const notFound = null;
                 return notFound;
             }else{
-                console.log(idFiltrado);
                 return idFiltrado;
             }
         }
