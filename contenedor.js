@@ -87,12 +87,8 @@ class Contenedor {
 const productos = new Contenedor ('productos.txt')
 
 
+export {Contenedor, productos};
 
-export {productos};
 
-/********Los productos se ingresan de uno a la vez.*******/
-//productos.save({titulo:"tijera",precio:123,url:"https/www.librería.com.ar/asdfasfasfas"})
-//productos.save({titulo:"escuadra",precio:200,url:"https/www.librería.com.ar/134123asfas"})
-//productos.save({titulo:"lapicera",precio:354,url:"https/www.librería.com.ar/145dsaafj89a"})
 
 
