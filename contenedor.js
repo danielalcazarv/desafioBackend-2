@@ -82,12 +82,27 @@ class Contenedor {
             console.log(error);
         }
     }
+
+    async update (id,obj){
+        const objsCollection = await this.getAll();
+        const objsCollectionFiltrado = objsCollection.filter(obj => obj.id!=id);
+        const newProducto = {id:id, ...obj};
+        objsCollectionFiltrado.push(newProducto);
+        const objsJson = JSON.stringify(objsCollectionFiltrado);
+        try {
+            await fs.promises.writeFile(this.archivo,objsJson);
+            console.log("Producto actualizado.");
+        }
+        catch (error){
+            console.log("Error al actualizar el producto. Tipo de error: "+ error);
+        }
+    }
 }
 
 const productos = new Contenedor ('productos.txt')
 
 
-export {Contenedor, productos};
+export {productos};
 
 
 

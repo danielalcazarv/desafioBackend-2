@@ -28,4 +28,10 @@ routerProductos.delete('/:id', async (req,res)=>{
     res.json(prodDelete);
 })
 
+routerProductos.put('/:id', async (req, res)=>{
+    let id = Number(req.params.id);
+    let obj = req.body;
+    res.json(productos.update(id,obj));
+});
+
 export default routerProductos;
