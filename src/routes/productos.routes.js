@@ -8,30 +8,30 @@ const routerProductos = express.Router();
 
 routerProductos.get('/', async (req,res)=>{
     const prods = await productos.getAll();
-    return res.json(prods);
+    return res.status(200).json(prods);
 });
 
 routerProductos.get('/:id', async (req,res)=>{
     let id = Number(req.params.id);
     const prod = await productos.getById(id);
-    res.json(prod);
+    res.status(200).json(prod);
 });
 
 routerProductos.post('/', (req,res)=>{
     let obj = req.body;
-    res.json(productos.save(obj));
+    res.status(200).json(productos.save(obj));
 });
 
 routerProductos.delete('/:id', async (req,res)=>{
     let id = Number(req.params.id);
     const prodDelete= await productos.deleteById(id);
-    res.json(prodDelete);
+    res.status(200).json(prodDelete);
 })
 
 routerProductos.put('/:id', async (req, res)=>{
     let id = Number(req.params.id);
     let obj = req.body;
-    res.json(productos.update(id,obj));
+    res.status(200).json(productos.update(id,obj));
 });
 
 export default routerProductos;
