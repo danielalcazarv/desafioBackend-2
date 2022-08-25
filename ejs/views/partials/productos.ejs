@@ -1,0 +1,24 @@
+<h3 class="container mt-3 mb-3 ">Vista de Productos</h3>
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% api.forEach(function(prod){ %>   
+            <tr>
+                <td scope="row"><%=prod.titulo %></td>
+                <td>$ <%=prod.precio %></td>
+                <td>
+                    <img src='<%=prod.url %>' class="img-thumbnail" style="max-width: 60px ;" alt="Foto de ">
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<form action="/" method="GET" class="container mt-3">
+    <button class="btn btn-success">Cargar Nuevo Producto</button>
+</form>
