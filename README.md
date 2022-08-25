@@ -4,7 +4,7 @@ _En este repositorio estoy subiendo los desafios semanales de la cursada de Back
 
 ## Desafio Motores de Plantillas:
 Uso de motores de plantillas Handlebars, PUG y EJS. Tras utilizar estas tres librerías, me quedo con PUG, fue la que más rápido
-pude resolver, es fácil de implementar y escribir, ahorra bastantes líneas de código.
+pude resolver, es fácil de implementar y escribir, ahorra bastantes líneas de código. No descarto del todo a EJS, ya que creo que posee una versatilidad a la hora de crear variables y funciones.
 
 <h1 align="center">Hola 👋, mi nombre es Daniel Alcazar</h1>
 <h3 align="center">Estudiando en CODERHOUSE!</h3>

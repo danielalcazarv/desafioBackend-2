@@ -15,5 +15,5 @@ block productos
                     td="$ " + val.precio 
                     td 
                         img(src=val.url, class="img-thumbnail" style="max-width: 60px ;" alt="Img de " + val.titulo)
-    form(action="/" method="GET" class="container mt-3")
-        button(class="btn btn-success")="Cargar Nuevo Producto"
+    div(class="container mt-3")
+        a(href="/" class="btn btn-success")="Cargar Nuevo Producto"

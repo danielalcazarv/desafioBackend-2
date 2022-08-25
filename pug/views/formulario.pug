@@ -11,6 +11,5 @@ block formulario
             label(for="url")="URL"
             input(class="form-control my-2" type="text" name="url")
             button(class="btn btn-primary my-2")="ENVIAR"
-    form(action="/productos" method="GET" class="container mt-3")
-        button(class="btn btn-success")="Ver Productos"
-            
+    div(class="container mt-3")
+        a(href="/productos" class="btn btn-success")="Ver Productos Cargados"
