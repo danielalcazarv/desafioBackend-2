@@ -32,7 +32,7 @@ app.set('view engine', 'hbs');
 app.set('views','./views')
 
 /******Rutas******/
-app.use('/api/productos', routerProductos);
+//app.use('/api/productos', routerProductos);
 
 app.get('/', (req,res)=>{
     res.render('main',{boton:false})
@@ -42,6 +42,12 @@ app.get('/productos', async (req, res)=>{
     const prods = await productos.getAll();
     res.render('main',{api:prods, boton:true})
 })
+
+app.post('/', (req,res)=>{
+    let obj = req.body;
+    productos.save(obj)
+    res.render('main',{boton:false})
+});
 
 //Errores globales
 app.use(function(err,req,res,next){
