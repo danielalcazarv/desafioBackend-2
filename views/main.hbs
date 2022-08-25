@@ -1,0 +1,13 @@
+{{#if boton}}
+    <div class="container">
+        {{#if api}}
+            {{>productos}}
+        {{else}}
+            <p class="fs-4 text-danger bg-light w-auto">No se encontraron productos.</p>
+        {{/if}}
+    </div>
+{{else}}
+    <div>
+        {{> formulario}}
+    </div>
+{{/if}}

@@ -1,8 +1,10 @@
 /******Modulos******/
-import express  from 'express';
+import express, { application }  from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import morgan from 'morgan';
+import handlebars from 'express-handlebars';
+import {productos} from './contenedor.js';
 
 //Solucion a __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -18,8 +20,28 @@ app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev'));
 app.use(express.static(__dirname +'/public'));
 
+//Motores de plantillas
+//HBS
+app.engine('hbs', handlebars.engine({
+    extname: '.hbs',
+    defaultLayout: 'index.hbs',
+    layoutsDir: __dirname +'/views/layouts',
+    partialsDir: __dirname +'/views/partials'
+}));
+app.set('view engine', 'hbs');
+app.set('views','./views')
+
 /******Rutas******/
 app.use('/api/productos', routerProductos);
+
+app.get('/', (req,res)=>{
+    res.render('main',{boton:false})
+})
+
+app.get('/productos', async (req, res)=>{
+    const prods = await productos.getAll();
+    res.render('main',{api:prods, boton:true})
+})
 
 //Errores globales
 app.use(function(err,req,res,next){
