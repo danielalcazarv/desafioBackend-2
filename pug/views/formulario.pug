@@ -1,0 +1,16 @@
+extends layout 
+
+block formulario 
+    h3(class="container mt-3 mb-3")="Formulario de Ingreso"
+    div(class="container" style="max-width:600px")
+        form(action="/" method="POST") 
+            label(for="titulo")="NOMBRE"
+            input(class="form-control my-2" type="text" name="titulo")
+            label(for="precio")="PRECIO"
+            input(class="form-control my-2" type="number" name="precio")
+            label(for="url")="URL"
+            input(class="form-control my-2" type="text" name="url")
+            button(class="btn btn-primary my-2")="ENVIAR"
+    form(action="/productos" method="GET" class="container mt-3")
+        button(class="btn btn-success")="Ver Productos"
+            

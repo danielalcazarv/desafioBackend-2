@@ -1,5 +1,5 @@
 /******Modulos******/
-import express, { application }  from 'express';
+import express from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import morgan from 'morgan';
@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 //Instancia de servidor
 const app = express();
-import routerProductos from './src/routes/productos.routes.js'
+//import routerProductos from './src/routes/productos.routes.js'
 
 /******Middleware******/
 app.use(express.json());
@@ -29,19 +29,19 @@ app.engine('hbs', handlebars.engine({
     partialsDir: __dirname +'/views/partials'
 }));
 app.set('view engine', 'hbs');
-app.set('views','./views')
+app.set('views','./views');
 
 /******Rutas******/
 //app.use('/api/productos', routerProductos);
 
 app.get('/', (req,res)=>{
     res.render('main',{boton:false})
-})
+});
 
 app.get('/productos', async (req, res)=>{
     const prods = await productos.getAll();
     res.render('main',{api:prods, boton:true})
-})
+});
 
 app.post('/', (req,res)=>{
     let obj = req.body;
@@ -60,4 +60,4 @@ const port = 8080;
 app.listen(port, ()=>{
     console.log("Tu servidor esta corriendo en el puerto " + port);
 })
-app.on("error", error=> console.log("El error es: " + error))
+app.on("error", error=> console.log("El error es: " + error));
